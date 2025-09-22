@@ -3,3 +3,5 @@ SoftUni JS Back End Course Project
 
 ## ToDOs:
  - [x] Initialize NodeJS Project
+ - [x] Dev script
+ - [] Debugging

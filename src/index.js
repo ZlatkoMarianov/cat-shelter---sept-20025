@@ -2,18 +2,22 @@ import http from 'http';
 import fs from 'fs/promises';
 
 async function homeView() {
-   const homeHtml = await fs.readFile('./src/views/home/index.html', { encoding: 'utf-8' });
+   const homeHtml = await renderView('./src/views/home/index.html');
    return homeHtml;
 }
 
 async function addBreedView() {
-   const html = await fs.readFile('./src/views/addBreed.html', { encoding: 'utf-8' });
+   const html = await renderView('./src/views/addBreed.html');
    return html;
 }
 
 async function addCatView() {
-   const html = await fs.readFile('./src/views/addCat.html', { encoding: 'utf-8' });
+   const html = await renderView('./src/views/addCat.html');
    return html;
+}
+
+function renderView(path) {
+   return fs.readFile(path, { encoding: 'utf-8' });
 }
 
 
@@ -26,7 +30,7 @@ const server = http.createServer(async (req, res) => {
          break;
 
       case '/cats/add-breed':
-         html = await addBreedView(); 
+         html = await addBreedView();
          break;
 
       case '/cats/add-cat':

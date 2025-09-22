@@ -11,6 +11,11 @@ async function addBreedView() {
    return html;
 }
 
+async function addCatView() {
+   const html = await fs.readFile('./src/views/addCat.html', { encoding: 'utf-8' });
+   return html;
+}
+
 
 const server = http.createServer(async (req, res) => {
    let html;
@@ -21,7 +26,11 @@ const server = http.createServer(async (req, res) => {
          break;
 
       case '/cats/add-breed':
-         html = await addBreedView();
+         html = await addBreedView(); 
+         break;
+
+      case '/cats/add-cat':
+         html = await addCatView();
          break;
 
       case '/styles/site.css':

@@ -1,7 +1,14 @@
 # cat-shelter---sept-20025
 SoftUni JS Back End Course Project
 
-## ToDOs:
+## ToDos:
  - [x] Initialize NodeJS Project
  - [x] Dev script
- - [] Debugging
+ - [x] Debugging
+ - [x] Add basic http server
+ - [x] Add resources
+ - [x] Show home page
+ - [x] Add css
+ - [] 
+ - [] 
+ - [] 

@@ -5,7 +5,16 @@ import cats from './cats.js';
 
 async function homeView() {
    const html = await readFile('./src/views/home/index.html');
-   const catsHtml = cats.map(cat => catTemplate(cat)).join('\n');
+
+
+
+   let catsHtml = '';
+   if (cats.length > 0) {
+      catsHtml = cats.map(cat => catTemplate(cat)).join('\n');
+   } else {
+      catsHtml = '<span>There are no cats!</span>';
+   }
+
    const result = html.replaceAll('{{cats}}', catsHtml);
 
    return result;
@@ -40,7 +49,6 @@ function catTemplate(cat) {
 `;
 }
 
-
 const server = http.createServer(async (req, res) => {
    let html;
 
@@ -55,7 +63,7 @@ const server = http.createServer(async (req, res) => {
          const result = new URLSearchParams(data);
          const newCat = Object.fromEntries(result.entries());
 
-         cats.push(newCat)
+         cats.push(newCat);
 
          //TODO : Redirect to home page
       });

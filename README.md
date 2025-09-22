@@ -9,6 +9,6 @@ SoftUni JS Back End Course Project
  - [x] Add resources
  - [x] Show home page
  - [x] Add css
- - [] 
+ - [x] Read home html from file sistem
  - [] 
  - [] 

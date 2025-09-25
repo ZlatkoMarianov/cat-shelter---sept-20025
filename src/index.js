@@ -6,8 +6,6 @@ import cats from './cats.js';
 async function homeView() {
    const html = await readFile('./src/views/home/index.html');
 
-
-
    let catsHtml = '';
    if (cats.length > 0) {
       catsHtml = cats.map(cat => catTemplate(cat)).join('\n');
@@ -60,13 +58,23 @@ const server = http.createServer(async (req, res) => {
       });
 
       req.on('end', () => {
-         const result = new URLSearchParams(data);
-         const newCat = Object.fromEntries(result.entries());
+         const searchParams = new URLSearchParams(data);
+         const newCat = Object.fromEntries(searchParams.entries());
 
          cats.push(newCat);
 
          //TODO : Redirect to home page
+
+         res.writeHead(302, {
+            'location': '/'
+         });
+
+         res.end()
       });
+
+
+
+      return;
    }
 
    switch (req.url) {

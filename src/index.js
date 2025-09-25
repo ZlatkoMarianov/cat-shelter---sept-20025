@@ -1,10 +1,12 @@
 import http from 'http';
 import fs from 'fs/promises';
 
-import cats from './cats.js';
+import * as data from './data.js'
+
 
 async function homeView() {
    const html = await readFile('./src/views/home/index.html');
+   const cats = await data.getCats();
 
    let catsHtml = '';
    if (cats.length > 0) {
@@ -51,28 +53,25 @@ const server = http.createServer(async (req, res) => {
    let html;
 
    if (req.method === 'POST') {
-      let data = '';
+      let body = '';
 
       req.on('data', (chunk) => {
-         data += chunk.toString();
+         body += chunk.toString();
       });
 
       req.on('end', () => {
-         const searchParams = new URLSearchParams(data);
+         const searchParams = new URLSearchParams(body);
          const newCat = Object.fromEntries(searchParams.entries());
 
-         cats.push(newCat);
+         data.saveCat(newCat);
 
-         //TODO : Redirect to home page
-
+         // Redirect to home page
          res.writeHead(302, {
             'location': '/'
          });
 
          res.end()
       });
-
-
 
       return;
    }

@@ -20,6 +20,6 @@ SoftUni JS Back End Course Project
 - [x] Add cats from add-cats page
 - [x] Conditional rendering cats
 - [x] Redirect to home page
-- [] Add cats persitence
-- [] 
+- [x] Add cats persitence
+- []  Add unique id to each create cat
 - [] 
